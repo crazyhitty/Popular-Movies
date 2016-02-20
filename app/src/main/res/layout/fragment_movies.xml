@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view_movies"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:fadeScrollbars="true"
+            android:padding="@dimen/item_offset"
+            android:scrollbars="vertical" />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_layout_movies_unavailable"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="invisible">
+
+        <ImageView
+            android:id="@+id/image_view_sad_face"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_sad_face_24dp" />
+
+        <android.support.v4.widget.Space
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_small" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/no_movies_available" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

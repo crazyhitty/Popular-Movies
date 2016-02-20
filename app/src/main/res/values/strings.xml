@@ -1,0 +1,106 @@
+<resources>
+    <string name="app_name">Popular Movies</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_sort">Sort</string>
+    <string name="action_about">About</string>
+
+    <!--fonts-->
+    <string name="roboto_condensed">sans-serif-condensed</string>
+    <string name="roboto_light">sans-serif-light</string>
+
+    <string name="action_sort_by_popularity">By Popularity</string>
+    <string name="action_sort_by_rating">By Rating</string>
+    <string name="title_activity_movie_details">MovieDetailsActivity</string>
+    <string name="movie_plot">Movie Plot</string>
+    <string name="release_date">Release Date</string>
+    <string name="rating">Rating</string>
+    <string name="overview">Overview</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!--string related to settings.xml-->
+    <string name="image_quality">Image Quality</string>
+
+    <string name="poster_thumbnail_quality">Poster thumbnail quality</string>
+    <string name="poster_thumbnail_summary">Change the resolution of the thumbnails shown on the home screen.</string>
+    <string name="poster_thumbnail_key">poster_thumbnail_key</string>
+    <string name="poster_thumbnail_default_value">medium</string>
+
+    <string-array name="poster_thumbnail_entries">
+        <item>Low (w185)</item>
+        <item>Medium (w342)</item>
+        <item>High (w500)</item>
+        <item>Ultra (w780)</item>
+        <item>Original (original) <b>Not recommended</b></item>
+    </string-array>
+
+    <string-array name="poster_thumbnail_entry_values">
+        <item>low</item>
+        <item>medium</item>
+        <item>high</item>
+        <item>ultra</item>
+        <item>original</item>
+    </string-array>
+
+    <string name="backdrop_quality">Backdrop quality</string>
+    <string name="backdrop_summary">Change the resolution of the backdrop shown on the movie details screen.</string>
+    <string name="backdrop_key">backdrop_key</string>
+    <string name="backdrop_default_value">high</string>
+
+    <string-array name="backdrop_entries">
+        <item>Low (w185)</item>
+        <item>Medium (w342)</item>
+        <item>High (w500)</item>
+        <item>Ultra (w780)</item>
+        <item>Original (original) <b>Not recommended</b></item>
+    </string-array>
+
+    <string-array name="backdrop_entry_values">
+        <item>low</item>
+        <item>medium</item>
+        <item>high</item>
+        <item>ultra</item>
+        <item>original</item>
+    </string-array>
+
+    <string name="system">System</string>
+
+    <string name="modify_api_key">Modify API key</string>
+    <string name="modify_api_key_summary">Change themoviedb.org API key powering this application manually.</string>
+    <string name="modify_api_key_hint">Enter your API key here</string>
+    <string name="modify_api_key_pref_key">modify_api_key</string>
+
+    <string name="reset_api_key">Reset API Key</string>
+    <string name="reset_api_key_summary">Restore API key to its original value.</string>
+    <string name="reset_api_key_dialog_msg">This will restore the API key that was originally present in the system.</string>
+    <string name="reset_api_key_pref_key">reset_api_key</string>
+
+    <!--..........................-->
+
+    <string name="no_movies_available">No movies available.\nSwipe down to refresh the list.</string>
+    <string name="are_you_sure">Are you sure ?</string>
+    <string name="reset">Reset</string>
+    <string name="cancel">Cancel</string>
+    <string name="action_display_type">Display type</string>
+    <string name="action_phone">Phone</string>
+    <string name="action_7_inch_tablet">7 inch tablet</string>
+    <string name="action_10_inch_tablet">10 inch tablet</string>
+
+    <string name="about_desc">Developed by Kartik Sharma.\n\n<b>Libraries used:</b></string>
+
+    <string-array name="libraries_used">
+        <item>Butterknife</item>
+        <item>Material Dialogs</item>
+        <item>Okhttp3</item>
+        <item>Realm db</item>
+        <item>Picasso</item>
+    </string-array>
+
+    <string-array name="libraries_used_links">
+        <item>https://github.com/JakeWharton/butterknife</item>
+        <item>https://github.com/afollestad/material-dialogs</item>
+        <item>https://github.com/square/okhttp</item>
+        <item>https://github.com/realm/realm-java</item>
+        <item>https://github.com/square/picasso</item>
+    </string-array>
+
+</resources>

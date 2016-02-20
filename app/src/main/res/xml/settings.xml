@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="@string/image_quality">
+        <ListPreference
+            android:defaultValue="@string/poster_thumbnail_default_value"
+            android:entries="@array/poster_thumbnail_entries"
+            android:entryValues="@array/poster_thumbnail_entry_values"
+            android:key="@string/poster_thumbnail_key"
+            android:summary="@string/poster_thumbnail_summary"
+            android:title="@string/poster_thumbnail_quality" />
+        <ListPreference
+            android:defaultValue="@string/backdrop_default_value"
+            android:entries="@array/backdrop_entries"
+            android:entryValues="@array/backdrop_entry_values"
+            android:key="@string/backdrop_key"
+            android:summary="@string/backdrop_summary"
+            android:title="@string/backdrop_quality" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/system">
+        <EditTextPreference
+            android:hint="@string/modify_api_key_hint"
+            android:inputType="textPassword"
+            android:key="@string/modify_api_key_pref_key"
+            android:summary="@string/modify_api_key_summary"
+            android:title="@string/modify_api_key" />
+        <com.crazyhitty.chdev.ks.popularmovies.ui.views.OptionDialogPreference
+            android:dialogMessage="@string/reset_api_key_dialog_msg"
+            android:dialogTitle="@string/are_you_sure"
+            android:key="@string/reset_api_key_pref_key"
+            android:negativeButtonText="@string/cancel"
+            android:positiveButtonText="@string/reset"
+            android:summary="@string/reset_api_key_summary"
+            android:title="@string/reset_api_key" />
+    </PreferenceCategory>
+</PreferenceScreen>

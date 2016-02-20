@@ -1,0 +1,61 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.activities.MoviesActivity">
+    <item
+        android:id="@+id/action_display_type"
+        android:orderInCategory="1"
+        android:title="@string/action_display_type"
+        app:showAsAction="never">
+        <menu>
+            <group
+                android:id="@+id/group_display_type"
+                android:checkableBehavior="single">
+                <item
+                    android:id="@+id/action_phone"
+                    android:checked="true"
+                    android:orderInCategory="1"
+                    android:title="@string/action_phone" />
+                <item
+                    android:id="@+id/action_7_inch_tablet"
+                    android:orderInCategory="2"
+                    android:title="@string/action_7_inch_tablet" />
+                <item
+                    android:id="@+id/action_10_inch_tablet"
+                    android:orderInCategory="3"
+                    android:title="@string/action_10_inch_tablet" />
+            </group>
+        </menu>
+    </item>
+    <item
+        android:id="@+id/action_sort"
+        android:orderInCategory="1"
+        android:title="@string/action_sort"
+        app:showAsAction="never">
+        <menu>
+            <group
+                android:id="@+id/group_sort"
+                android:checkableBehavior="single">
+                <item
+                    android:id="@+id/action_sort_by_popularity"
+                    android:checked="true"
+                    android:orderInCategory="1"
+                    android:title="@string/action_sort_by_popularity" />
+                <item
+                    android:id="@+id/action_sort_by_rating"
+                    android:orderInCategory="2"
+                    android:title="@string/action_sort_by_rating" />
+            </group>
+        </menu>
+    </item>
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="2"
+        android:title="@string/action_settings"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_about"
+        android:orderInCategory="3"
+        android:title="@string/action_about"
+        app:showAsAction="never" />
+</menu>
