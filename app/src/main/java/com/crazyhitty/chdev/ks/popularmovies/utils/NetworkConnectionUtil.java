@@ -1,13 +1,13 @@
 package com.crazyhitty.chdev.ks.popularmovies.utils;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.provider.Settings;
 
-import com.afollestad.materialdialogs.DialogAction;
-import com.afollestad.materialdialogs.MaterialDialog;
 import com.crazyhitty.chdev.ks.popularmovies.R;
 
 /**
@@ -32,19 +32,18 @@ public class NetworkConnectionUtil {
     }
 
     public static void showNetworkUnavailableDialog(final Context context) {
-        MaterialDialog networkUnavailableDialog = new MaterialDialog.Builder(context)
-                .title(NO_INTERNET_CONN)
-                .content(NO_INTERNET_CONN_DESC)
-                .iconRes(R.drawable.ic_error_24dp)
-                .positiveText(SETTINGS)
-                .negativeText(DISMISS)
-                .onPositive(new MaterialDialog.SingleButtonCallback() {
+        AlertDialog networkUnavailableDialog = new AlertDialog.Builder(context)
+                .setTitle(NO_INTERNET_CONN)
+                .setMessage(NO_INTERNET_CONN_DESC)
+                .setIcon(R.drawable.ic_error_24dp)
+                .setPositiveButton(SETTINGS, new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(MaterialDialog materialDialog, DialogAction dialogAction) {
+                    public void onClick(DialogInterface dialogInterface, int i) {
                         Intent wifiSettingsIntent = new Intent(Settings.ACTION_WIFI_SETTINGS);
                         context.startActivity(wifiSettingsIntent);
                     }
-                }).build();
+                })
+                .create();
         networkUnavailableDialog.show();
     }
 }

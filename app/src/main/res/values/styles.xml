@@ -36,6 +36,10 @@
         <item name="colorButtonNormal">@color/md_red_500</item>
     </style>
 
+    <style name="ButtonTheme.Primary">
+        <item name="colorButtonNormal">@color/primary</item>
+    </style>
+
     <style name="LightTextView" parent="android:Widget.TextView">
         <item name="android:fontFamily" tools:targetApi="jelly_bean">@string/roboto_light</item>
     </style>

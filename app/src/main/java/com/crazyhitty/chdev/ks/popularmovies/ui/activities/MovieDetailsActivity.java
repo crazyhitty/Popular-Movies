@@ -2,6 +2,7 @@ package com.crazyhitty.chdev.ks.popularmovies.ui.activities;
 
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -16,6 +17,7 @@ import com.squareup.picasso.Picasso;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MovieDetailsActivity extends AppCompatActivity {
     @Bind(R.id.toolbar)
@@ -24,8 +26,11 @@ public class MovieDetailsActivity extends AppCompatActivity {
     CollapsingToolbarLayout collapsingToolbarLayout;
     @Bind(R.id.image_view_backdrop)
     ImageView imgBackdrop;
+    @Bind(R.id.fab_favorite)
+    FloatingActionButton fabFavorite;
 
     private MovieItem mMovieItem;
+    private MovieDetailsFragment mMovieDetailsFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +46,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
         Picasso.with(this)
                 .load(SettingPreferences.BACKDROP_IMAGE_PATH + mMovieItem.getBackdropPath())
                 .placeholder(R.drawable.light_black_bg)
-                .error(R.drawable.ic_error_48dp)
+                .error(R.drawable.ic_image_error_48dp)
                 .into(imgBackdrop, new Callback() {
                     @Override
                     public void onSuccess() {
@@ -55,10 +60,18 @@ public class MovieDetailsActivity extends AppCompatActivity {
                 });
 
         //set details fragment
-        MovieDetailsFragment movieDetailsFragment = MovieDetailsFragment.newInstance(mMovieItem);
+        mMovieDetailsFragment = MovieDetailsFragment.newInstance(mMovieItem, false);
 
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.frame_movie_details, movieDetailsFragment).commit();
+        fragmentTransaction.replace(R.id.frame_movie_details, mMovieDetailsFragment).commit();
+
+        if (mMovieDetailsFragment != null) {
+            if (mMovieDetailsFragment.isFavorite()) {
+                fabFavorite.setImageResource(R.drawable.ic_star_24dp);
+            } else {
+                fabFavorite.setImageResource(R.drawable.ic_star_outline_24dp);
+            }
+        }
     }
 
     private void initToolbar() {
@@ -86,5 +99,18 @@ public class MovieDetailsActivity extends AppCompatActivity {
         movieItem.setVoteCount(bundle.getInt(MovieItem.VOTE_COUNT_KEY));
         movieItem.setType(bundle.getString(MovieItem.TYPE_KEY));
         return movieItem;
+    }
+
+    @OnClick(R.id.fab_favorite)
+    public void onFavorite() {
+        if (mMovieDetailsFragment != null) {
+            if (mMovieDetailsFragment.isFavorite()) {
+                mMovieDetailsFragment.unFavoriteMovie();
+                fabFavorite.setImageResource(R.drawable.ic_star_outline_24dp);
+            } else {
+                mMovieDetailsFragment.favoriteMovie();
+                fabFavorite.setImageResource(R.drawable.ic_star_24dp);
+            }
+        }
     }
 }

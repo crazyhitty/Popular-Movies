@@ -17,6 +17,7 @@ public class SettingPreferences {
     public static final String TAB_10_INCH = "tab_10_inch";
     public static final String BY_POPULARITY = "by_popularity";
     public static final String BY_RATING = "by_rating";
+    public static final String BY_FAVORITES = "by_favorites";
 
     private static final String DISPLAY_TYPE = "display_type";
     private static final String SORTING_TYPE = "sorting_type";
@@ -31,6 +32,7 @@ public class SettingPreferences {
 
     public static boolean SORT_BY_POPULARITY = true;
     public static boolean SORT_BY_RATING = false;
+    public static boolean SORT_BY_FAVORITES = false;
     public static boolean DISPLAY_TYPE_PHONE = true;
     public static boolean DISPLAY_TYPE_7_INCH_TAB = false;
     public static boolean DISPLAY_TYPE_10_INCH_TAB = false;
@@ -87,15 +89,23 @@ public class SettingPreferences {
                 case BY_POPULARITY:
                     SORT_BY_POPULARITY = true;
                     SORT_BY_RATING = false;
+                    SORT_BY_FAVORITES = false;
                     break;
                 case BY_RATING:
                     SORT_BY_POPULARITY = false;
                     SORT_BY_RATING = true;
+                    SORT_BY_FAVORITES = false;
+                    break;
+                case BY_FAVORITES:
+                    SORT_BY_POPULARITY = false;
+                    SORT_BY_RATING = false;
+                    SORT_BY_FAVORITES = true;
                     break;
             }
         } else {
             SORT_BY_POPULARITY = true;
             SORT_BY_RATING = false;
+            SORT_BY_FAVORITES = false;
         }
     }
 

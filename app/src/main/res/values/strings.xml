@@ -10,6 +10,7 @@
 
     <string name="action_sort_by_popularity">By Popularity</string>
     <string name="action_sort_by_rating">By Rating</string>
+    <string name="action_sort_by_favorites">By Favorites</string>
     <string name="title_activity_movie_details">MovieDetailsActivity</string>
     <string name="movie_plot">Movie Plot</string>
     <string name="release_date">Release Date</string>
@@ -77,6 +78,7 @@
     <!--..........................-->
 
     <string name="no_movies_available">No movies available.\nSwipe down to refresh the list.</string>
+    <string name="no_movies_selected">No movies selected.\nSelect a movie first to view its details.</string>
     <string name="are_you_sure">Are you sure ?</string>
     <string name="reset">Reset</string>
     <string name="cancel">Cancel</string>
@@ -86,6 +88,19 @@
     <string name="action_10_inch_tablet">10 inch tablet</string>
 
     <string name="about_desc">Developed by Kartik Sharma.\n\n<b>Libraries used:</b></string>
+    <string name="watch_videos">Watch Videos</string>
+    <string name="read_reviews">Read Reviews</string>
+    <string name="dismiss">Dismiss</string>
+    <string name="content">Content</string>
+    <string name="author">Author</string>
+    <string name="reviews_desc">You can tap on the review authors below and view their respective reviews.</string>
+    <string name="review_link">Review link</string>
+    <string name="title">Title</string>
+    <string name="videos_desc">You can tap on the items below to view the videos.</string>
+    <string name="load_more">Load More</string>
+    <string name="favorite">Favorite</string>
+    <string name="no_movie_available_to_fav">No movie available to favorite.</string>
+    <string name="unfavorite">Unfavorite</string>
 
     <string-array name="libraries_used">
         <item>Butterknife</item>

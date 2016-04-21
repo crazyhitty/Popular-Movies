@@ -12,5 +12,7 @@ public interface OnMoviesLoadListener {
 
     void onMoviesLoadedByUserRating(List<MovieItem> movieItems);
 
+    void onMoviesLoadedByFavorites(List<MovieItem> movieItems);
+
     void onFailure(String message);
 }

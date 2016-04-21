@@ -1,5 +1,6 @@
 package com.crazyhitty.chdev.ks.popularmovies.ui.adapters;
 
+import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,7 +47,7 @@ public class MoviesRecyclerAdapter extends RecyclerView.Adapter<MoviesRecyclerAd
         Picasso.with(holder.itemView.getContext())
                 .load(SettingPreferences.POSTER_THUMBNAIL_IMAGE_PATH + mMovieItems.get(position).getPosterPath())
                 .placeholder(R.drawable.light_black_bg)
-                .error(R.drawable.ic_error_48dp)
+                .error(R.drawable.ic_image_error_24dp)
                 .into(holder.imgPoster, new Callback() {
                     @Override
                     public void onSuccess() {
@@ -66,6 +67,27 @@ public class MoviesRecyclerAdapter extends RecyclerView.Adapter<MoviesRecyclerAd
             return 0;
         }
         return mMovieItems.size();
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return super.getItemId(position);
+    }
+
+    public void addMovieItems(final List<MovieItem> movieItems) {
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... voids) {
+                mMovieItems.addAll(movieItems);
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+                notifyDataSetChanged();
+            }
+        }.execute();
     }
 
     public static class MovieViewHolder extends RecyclerView.ViewHolder {

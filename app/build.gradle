@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'realm-android'
 
 android {
     compileSdkVersion 23
@@ -31,22 +32,19 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.1.1'
-    compile 'com.android.support:design:23.1.1'
+    compile 'com.android.support:appcompat-v7:23.2.0'
+    compile 'com.android.support:design:23.2.0'
 
     //butterknife : https://github.com/JakeWharton/butterknife
     compile 'com.jakewharton:butterknife:7.0.1'
 
     //materiol dialogs : https://github.com/afollestad/material-dialogs
-    compile('com.github.afollestad.material-dialogs:core:0.8.5.4@aar') {
+    compile('com.github.afollestad.material-dialogs:core:0.8.5.7@aar') {
         transitive = true
     }
 
     //okhttp 3 : https://github.com/square/okhttp
     compile 'com.squareup.okhttp3:okhttp:3.1.0'
-
-    //realm db : https://github.com/realm/realm-java
-    compile 'io.realm:realm-android:0.87.4'
 
     //picasso : https://github.com/square/picasso
     compile 'com.squareup.picasso:picasso:2.5.2'

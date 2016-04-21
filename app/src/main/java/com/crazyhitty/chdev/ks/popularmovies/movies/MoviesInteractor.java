@@ -1,11 +1,11 @@
 package com.crazyhitty.chdev.ks.popularmovies.movies;
 
-import android.content.Context;
 import android.os.AsyncTask;
 import android.text.TextUtils;
 
 import com.crazyhitty.chdev.ks.popularmovies.api.ApiConnection;
 import com.crazyhitty.chdev.ks.popularmovies.api.OnApiExecuteListener;
+import com.crazyhitty.chdev.ks.popularmovies.database.RealmDb;
 import com.crazyhitty.chdev.ks.popularmovies.models.MovieItem;
 import com.crazyhitty.chdev.ks.popularmovies.models.SettingPreferences;
 
@@ -16,14 +16,15 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.realm.Realm;
-import io.realm.RealmResults;
 import okhttp3.Request;
 
 /**
  * Created by Kartik_ch on 2/7/2016.
  */
 public class MoviesInteractor implements IMoviesInteractor {
+    //get params
+    private static final String PAGE_GET_PARAM = "&page=";
+
     //json params for movies
     private static final String PAGE = "page";
     private static final String RESULTS = "results";
@@ -43,14 +44,17 @@ public class MoviesInteractor implements IMoviesInteractor {
     private static final String VOTE_COUNT = "vote_count";
 
     private OnMoviesLoadListener mOnMoviesLoadListener;
-    private Context mContext;
 
-    public void fetchDataByPopularity(final OnMoviesLoadListener onMoviesLoadListener, Context context) {
+    public void fetchDataByPopularity(final OnMoviesLoadListener onMoviesLoadListener, int page) {
         this.mOnMoviesLoadListener = onMoviesLoadListener;
-        this.mContext = context;
+
+        StringBuilder urlBuilder = new StringBuilder();
+        urlBuilder.append(SettingPreferences.API_SORT_BY_POPULARITY);
+        urlBuilder.append(PAGE_GET_PARAM);
+        urlBuilder.append(page);
 
         Request request = new Request.Builder()
-                .url(SettingPreferences.API_SORT_BY_POPULARITY)
+                .url(urlBuilder.toString())
                 .build();
 
         new ApiConnection(new OnApiExecuteListener() {
@@ -66,12 +70,16 @@ public class MoviesInteractor implements IMoviesInteractor {
         }).connect(request);
     }
 
-    public void fetchDataByUserRating(final OnMoviesLoadListener onMoviesLoadListener, Context context) {
+    public void fetchDataByUserRating(final OnMoviesLoadListener onMoviesLoadListener, int page) {
         this.mOnMoviesLoadListener = onMoviesLoadListener;
-        this.mContext = context;
+
+        StringBuilder urlBuilder = new StringBuilder();
+        urlBuilder.append(SettingPreferences.API_SORT_BY_RATING);
+        urlBuilder.append(PAGE_GET_PARAM);
+        urlBuilder.append(page);
 
         Request request = new Request.Builder()
-                .url(SettingPreferences.API_SORT_BY_RATING)
+                .url(urlBuilder.toString())
                 .build();
 
         new ApiConnection(new OnApiExecuteListener() {
@@ -87,8 +95,8 @@ public class MoviesInteractor implements IMoviesInteractor {
         }).connect(request);
     }
 
-    public void fetchDataByPopularityOffline(OnMoviesLoadListener onMoviesLoadListener, Context context) {
-        List<MovieItem> movieItems = getMovieItemsFromRealm(context, "by_popularity");
+    public void fetchDataByPopularityOffline(OnMoviesLoadListener onMoviesLoadListener) {
+        List<MovieItem> movieItems = RealmDb.getMovieItemsFromRealm("by_popularity");
         if (!movieItems.isEmpty()) {
             onMoviesLoadListener.onMoviesLoadedByPopularity(movieItems);
         } else {
@@ -96,8 +104,8 @@ public class MoviesInteractor implements IMoviesInteractor {
         }
     }
 
-    public void fetchDataByUserRatingOffline(OnMoviesLoadListener onMoviesLoadListener, Context context) {
-        List<MovieItem> movieItems = getMovieItemsFromRealm(context, "by_rating");
+    public void fetchDataByUserRatingOffline(OnMoviesLoadListener onMoviesLoadListener) {
+        List<MovieItem> movieItems = RealmDb.getMovieItemsFromRealm("by_rating");
         if (!movieItems.isEmpty()) {
             onMoviesLoadListener.onMoviesLoadedByUserRating(movieItems);
         } else {
@@ -105,10 +113,14 @@ public class MoviesInteractor implements IMoviesInteractor {
         }
     }
 
-    private List<MovieItem> getMovieItemsFromRealm(Context context, String type) {
-        Realm realm = Realm.getInstance(context);
-        RealmResults<MovieItem> results = realm.where(MovieItem.class).findAll();
-        return results;
+    @Override
+    public void fetchDataByFavorites(OnMoviesLoadListener onMoviesLoadListener) {
+        List<MovieItem> movieItems = RealmDb.getAllFavoriteMoviesAlternate();
+        if (!movieItems.isEmpty()) {
+            onMoviesLoadListener.onMoviesLoadedByPopularity(movieItems);
+        } else {
+            onMoviesLoadListener.onFailure("none available");
+        }
     }
 
     private class ParseJsonAsyncTask extends AsyncTask<Void, Void, String> {
@@ -196,15 +208,7 @@ public class MoviesInteractor implements IMoviesInteractor {
         }
 
         private void saveData() {
-            for (int i = 0; i < mMovieItems.size(); i++) {
-                mMovieItems.get(i).setType(mType);
-            }
-
-            Realm realm = Realm.getInstance(mContext);
-            realm.beginTransaction();
-            realm.clear(MovieItem.class);
-            realm.copyToRealmOrUpdate(mMovieItems);
-            realm.commitTransaction();
+            RealmDb.saveMovies(mMovieItems, mType);
         }
     }
 }

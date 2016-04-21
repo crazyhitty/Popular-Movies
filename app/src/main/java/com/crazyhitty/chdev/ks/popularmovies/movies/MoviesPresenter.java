@@ -1,7 +1,5 @@
 package com.crazyhitty.chdev.ks.popularmovies.movies;
 
-import android.content.Context;
-
 import com.crazyhitty.chdev.ks.popularmovies.models.MovieItem;
 
 import java.util.List;
@@ -17,22 +15,28 @@ public class MoviesPresenter implements IMoviesPresenter, OnMoviesLoadListener {
         this.mView = mView;
     }
 
-    public void attemptMoviesLoadingByPopularity(Context context, boolean isOffline) {
+    public void attemptMoviesLoadingByPopularity(int page, boolean isOffline) {
         mMoviesInteractor = new MoviesInteractor();
         if (isOffline) {
-            mMoviesInteractor.fetchDataByPopularityOffline(MoviesPresenter.this, context);
+            mMoviesInteractor.fetchDataByPopularityOffline(MoviesPresenter.this);
         } else {
-            mMoviesInteractor.fetchDataByPopularity(MoviesPresenter.this, context);
+            mMoviesInteractor.fetchDataByPopularity(MoviesPresenter.this, page);
         }
     }
 
-    public void attemptMoviesLoadingByUserRating(Context context, boolean isOffline) {
+    public void attemptMoviesLoadingByUserRating(int page, boolean isOffline) {
         mMoviesInteractor = new MoviesInteractor();
         if (isOffline) {
-            mMoviesInteractor.fetchDataByUserRatingOffline(MoviesPresenter.this, context);
+            mMoviesInteractor.fetchDataByUserRatingOffline(MoviesPresenter.this);
         } else {
-            mMoviesInteractor.fetchDataByUserRating(MoviesPresenter.this, context);
+            mMoviesInteractor.fetchDataByUserRating(MoviesPresenter.this, page);
         }
+    }
+
+    @Override
+    public void attemptMoviesLoadingByFavorites() {
+        mMoviesInteractor = new MoviesInteractor();
+        mMoviesInteractor.fetchDataByFavorites(this);
     }
 
     @Override
@@ -43,6 +47,11 @@ public class MoviesPresenter implements IMoviesPresenter, OnMoviesLoadListener {
     @Override
     public void onMoviesLoadedByUserRating(List<MovieItem> movieItems) {
         mView.moviesLoadedByUserRating(movieItems);
+    }
+
+    @Override
+    public void onMoviesLoadedByFavorites(List<MovieItem> movieItems) {
+        mView.moviesLoadedByFavorites(movieItems);
     }
 
     @Override

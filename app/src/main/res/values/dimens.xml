@@ -8,6 +8,7 @@
     <dimen name="text_size_small">15sp</dimen>
     <dimen name="text_size_avg">20sp</dimen>
     <dimen name="text_size_big">25sp</dimen>
+    <dimen name="text_size_huge">35sp</dimen>
     <dimen name="padding_min">4dp</dimen>
     <dimen name="padding_small">8dp</dimen>
     <dimen name="padding_avg">16dp</dimen>
@@ -31,4 +32,6 @@
     <dimen name="card_corner_radius">2dp</dimen>
     <dimen name="card_elevation">2dp</dimen>
     <dimen name="item_offset">8dp</dimen>
+    <dimen name="two_pane_item_width">400dp</dimen>
+    <integer name="grid_size">2</integer>
 </resources>

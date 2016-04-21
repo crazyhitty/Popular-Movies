@@ -12,5 +12,7 @@ public interface IMoviesView {
 
     void moviesLoadedByUserRating(List<MovieItem> movieItems);
 
+    void moviesLoadedByFavorites(List<MovieItem> movieItems);
+
     void moviesLoadingFailed(String message);
 }

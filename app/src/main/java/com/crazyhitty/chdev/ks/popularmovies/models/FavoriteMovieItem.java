@@ -4,9 +4,9 @@ import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
 /**
- * Created by Kartik_ch on 2/7/2016.
+ * Created by Kartik_ch on 4/16/2016.
  */
-public class MovieItem extends RealmObject {
+public class FavoriteMovieItem extends RealmObject {
     public static final String PAGE_KEY = "page_key";
     public static final String ADULT_KEY = "adult_key";
     public static final String BACKDROP_PATH_KEY = "backdrop_path_key";
@@ -69,14 +69,6 @@ public class MovieItem extends RealmObject {
     public void setBackdropPath(String backdropPath) {
         this.backdropPath = backdropPath;
     }
-
-    /*public int[] getGenreIds() {
-        return genreIds;
-    }
-
-    public void setGenreIds(int[] genreIds) {
-        this.genreIds = genreIds;
-    }*/
 
     public int getId() {
         return id;

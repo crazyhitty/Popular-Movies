@@ -1,66 +1,201 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingLeft="@dimen/padding_avg"
-    android:paddingRight="@dimen/padding_avg">
+    android:layout_height="match_parent">
 
-    <android.support.v4.widget.Space
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/space_avg" />
+        android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/movie_plot"
-        android:textSize="@dimen/text_size_big"
-        android:textStyle="bold" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="@dimen/padding_avg"
+            android:paddingRight="@dimen/padding_avg">
 
-    <android.support.v4.widget.Space
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/space_avg" />
+            <LinearLayout
+                android:id="@+id/linear_layout_movie_details"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-    <View style="@style/Divider" />
+                <RelativeLayout
+                    android:id="@+id/relative_layout_movies_backdrop"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/app_bar_height"
+                    android:layout_marginTop="@dimen/margin_avg"
+                    android:background="@color/primary"
+                    android:visibility="gone">
 
-    <android.support.v4.widget.Space
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/space_min" />
+                    <ImageView
+                        android:id="@+id/image_view_backdrop"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/app_bar_height"
+                        android:scaleType="centerCrop" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentLeft="true"
+                        android:background="@color/dark_transparent">
 
-        <TextView
-            android:id="@+id/text_view_rating"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:text="@string/rating"
-            android:textSize="@dimen/text_size_small" />
+                        <TextView
+                            android:id="@+id/text_view_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/margin_small"
+                            android:text="@string/title"
+                            android:textColor="@color/md_grey_100"
+                            android:textSize="@dimen/text_size_huge"
+                            android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/text_view_release_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:text="@string/release_date"
-            android:textSize="@dimen/text_size_small" />
+                    </RelativeLayout>
 
-    </RelativeLayout>
+                </RelativeLayout>
 
-    <android.support.v4.widget.Space
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/space_avg" />
+                <android.support.v4.widget.Space
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/space_avg" />
 
-    <TextView
-        android:id="@+id/text_view_overview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/overview"
-        android:textSize="@dimen/text_size_avg" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-    <android.support.v4.widget.Space
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/space_avg" />
-</LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:text="@string/movie_plot"
+                        android:textSize="@dimen/text_size_big"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/text_view_favorite"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:clickable="true"
+                        android:text="@string/favorite"
+                        android:textSize="@dimen/text_size_big"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+
+                <android.support.v4.widget.Space
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/space_avg" />
+
+                <View style="@style/Divider" />
+
+                <android.support.v4.widget.Space
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/space_min" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/text_view_rating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:text="@string/rating"
+                        android:textSize="@dimen/text_size_small" />
+
+                    <TextView
+                        android:id="@+id/text_view_release_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:text="@string/release_date"
+                        android:textSize="@dimen/text_size_small" />
+
+                </RelativeLayout>
+
+                <android.support.v4.widget.Space
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/space_avg" />
+
+                <TextView
+                    android:id="@+id/text_view_overview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/overview"
+                    android:textSize="@dimen/text_size_avg" />
+
+                <android.support.v4.widget.Space
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/space_avg" />
+
+                <View style="@style/Divider" />
+
+                <android.support.v4.widget.Space
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/space_min" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:id="@+id/button_watch_videos"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:text="@string/watch_videos"
+                        android:textColor="@color/primary" />
+
+                    <Button
+                        android:id="@+id/button_read_reviews"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:text="@string/read_reviews"
+                        android:textColor="@color/primary" />
+
+                </RelativeLayout>
+
+                <android.support.v4.widget.Space
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/space_avg" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linear_layout_no_movies_selected"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:layout_margin="@dimen/margin_big"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="invisible">
+
+                <ImageView
+                    android:id="@+id/image_view_sad_face"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_sad_face_24dp" />
+
+                <android.support.v4.widget.Space
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/space_small" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/no_movies_selected" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>
