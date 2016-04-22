@@ -297,6 +297,9 @@ public class MoviesFragment extends Fragment implements IMoviesView, SwipeRefres
             btnLoadMore.setVisibility(View.VISIBLE);
             btnLoadMore.setEnabled(true);
             progressLoading.setVisibility(View.INVISIBLE);
+            if (SettingPreferences.SORT_BY_FAVORITES) {
+                btnLoadMore.setVisibility(View.GONE);
+            }
         } else if (mMoviesRecyclerAdapter.getItemCount() == 0) {
             linearLayoutMoviesUnavailable.setVisibility(View.VISIBLE);
         }
@@ -372,6 +375,7 @@ public class MoviesFragment extends Fragment implements IMoviesView, SwipeRefres
                 NetworkConnectionUtil.showNetworkUnavailableDialog(getActivity());
                 mMoviesPresenter.attemptMoviesLoadingByPopularity(mPageNumberPopular, true);
             }
+            btnLoadMore.setVisibility(View.VISIBLE);
             return true;
         }
 
@@ -386,6 +390,7 @@ public class MoviesFragment extends Fragment implements IMoviesView, SwipeRefres
                 NetworkConnectionUtil.showNetworkUnavailableDialog(getActivity());
                 mMoviesPresenter.attemptMoviesLoadingByUserRating(mPageNumberRating, true);
             }
+            btnLoadMore.setVisibility(View.VISIBLE);
             return true;
         }
 
@@ -393,6 +398,7 @@ public class MoviesFragment extends Fragment implements IMoviesView, SwipeRefres
             item.setChecked(true);
             SettingPreferences.saveSortingType(getActivity(), SettingPreferences.BY_FAVORITES);
             mMoviesPresenter.attemptMoviesLoadingByFavorites();
+            btnLoadMore.setVisibility(View.GONE);
         }
 
         if (id == R.id.action_settings) {
