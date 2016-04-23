@@ -10,6 +10,8 @@ Either add a API key manually inside Config.java located at:
 
 Or add it in settings menu of the application itself.
 
+Reinstall the app if you are facing any issues.
+
 # Features
 
 * Ability to switch sorting type, either by popluarity or by rating.
