@@ -75,6 +75,23 @@
     <string name="reset_api_key_dialog_msg">This will restore the API key that was originally present in the system.</string>
     <string name="reset_api_key_pref_key">reset_api_key</string>
 
+    <string name="font_size">Font Size</string>
+    <string name="font_size_summary">Change the font size according to your personal preference. (Only applicable to movies title &amp; rank text)</string>
+    <string name="font_size_key">font_size_key</string>
+    <string name="font_size_default_value">10</string>
+
+    <string-array name="font_size_entries">
+        <item>Small</item>
+        <item>Medium</item>
+        <item>Large</item>
+    </string-array>
+
+    <string-array name="font_size_entry_values">
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+    </string-array>
+
     <!--..........................-->
 
     <string name="no_movies_available">No movies available.\nSwipe down to refresh the list.</string>

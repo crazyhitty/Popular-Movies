@@ -15,6 +15,13 @@
             android:key="@string/backdrop_key"
             android:summary="@string/backdrop_summary"
             android:title="@string/backdrop_quality" />
+        <ListPreference
+            android:defaultValue="@string/font_size_default_value"
+            android:entries="@array/font_size_entries"
+            android:entryValues="@array/font_size_entry_values"
+            android:key="@string/font_size_key"
+            android:summary="@string/font_size_summary"
+            android:title="@string/font_size" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/system">
         <EditTextPreference

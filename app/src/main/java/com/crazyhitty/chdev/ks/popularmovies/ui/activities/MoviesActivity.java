@@ -2,6 +2,7 @@ package com.crazyhitty.chdev.ks.popularmovies.ui.activities;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -53,7 +54,7 @@ public class MoviesActivity extends AppCompatActivity {
 
         if (findViewById(R.id.linear_layout_movies) != null) {
             // The detail container view will be present only in the
-            // landscape layouts (res/values-land).
+            // landscape layouts (res/layout-large-land).
             // If this view is present, then the
             // activity should be in two-pane mode.
             mTwoPane = true;
@@ -110,6 +111,15 @@ public class MoviesActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         //Initialize other components
-        init();
+        //add a delay of 500 msec so that fragmentTransactions
+        //are not committed instantaneously and wait for the activity to
+        //recreate itself in the meantime
+        //This will also remove the illegal state exception
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                init();
+            }
+        }, 500);
     }
 }

@@ -22,10 +22,15 @@ public class SettingPreferences {
     private static final String DISPLAY_TYPE = "display_type";
     private static final String SORTING_TYPE = "sorting_type";
 
+    private static final String FONT_SIZE = "font_size";
+
     public static String POSTER_THUMBNAIL_IMAGE_PATH = null;
     public static String BACKDROP_IMAGE_PATH = null;
-    //DONOT MODIFY THIS KEY MANUALLY
-    //If you want to modify current API key just go to Config.Java in api package and change the key there.
+
+    /**
+     * <p>DON'T MODIFY THIS KEY MANUALLY</p>
+     * <p>If you want to modify current API key just go to {@link Config} in api package and change the key there.</p>
+     */
     public static String API_KEY = null;
     public static String API_SORT_BY_POPULARITY = null;
     public static String API_SORT_BY_RATING = null;
@@ -37,12 +42,15 @@ public class SettingPreferences {
     public static boolean DISPLAY_TYPE_7_INCH_TAB = false;
     public static boolean DISPLAY_TYPE_10_INCH_TAB = false;
 
+    public static int FONT_SIZE_VALUE = 10;
+
     public static void init(Context context) {
         initDisplayType(context);
         initSortingType(context);
         initPosterThumbnailQuality(context);
         initBackdropQuality(context);
         initApi(context);
+        initFontSize(context);
     }
 
     public static void saveDisplayType(Context context, String value) {
@@ -172,7 +180,10 @@ public class SettingPreferences {
         API_SORT_BY_RATING = Config.DISCOVER_MOVIES_API_USER_RATING + API_KEY;
     }
 
-    private static void resetAPI(Context context) {
-
+    private static void initFontSize(Context context) {
+        String fontSizeKey = context.getString(R.string.font_size_key);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        String fontSize = sharedPreferences.getString(fontSizeKey, context.getString(R.string.font_size_default_value));
+        FONT_SIZE_VALUE = Integer.parseInt(fontSize);
     }
 }

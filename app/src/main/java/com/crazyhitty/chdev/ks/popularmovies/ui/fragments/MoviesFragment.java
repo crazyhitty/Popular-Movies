@@ -197,8 +197,8 @@ public class MoviesFragment extends Fragment implements IMoviesView, SwipeRefres
         } else if (SettingPreferences.SORT_BY_FAVORITES) {
             mMoviesPresenter.attemptMoviesLoadingByFavorites();
         } else {
-            NetworkConnectionUtil.showNetworkUnavailableDialog(getActivity());
             swipeRefreshLayout.setRefreshing(false);
+            NetworkConnectionUtil.showNetworkUnavailableDialog(getActivity());
         }
     }
 
@@ -376,6 +376,8 @@ public class MoviesFragment extends Fragment implements IMoviesView, SwipeRefres
                 mMoviesPresenter.attemptMoviesLoadingByPopularity(mPageNumberPopular, true);
             }
             btnLoadMore.setVisibility(View.VISIBLE);
+
+            loadEmptyMoviesDetailsFragment();
             return true;
         }
 
@@ -391,6 +393,8 @@ public class MoviesFragment extends Fragment implements IMoviesView, SwipeRefres
                 mMoviesPresenter.attemptMoviesLoadingByUserRating(mPageNumberRating, true);
             }
             btnLoadMore.setVisibility(View.VISIBLE);
+
+            loadEmptyMoviesDetailsFragment();
             return true;
         }
 
@@ -399,6 +403,9 @@ public class MoviesFragment extends Fragment implements IMoviesView, SwipeRefres
             SettingPreferences.saveSortingType(getActivity(), SettingPreferences.BY_FAVORITES);
             mMoviesPresenter.attemptMoviesLoadingByFavorites();
             btnLoadMore.setVisibility(View.GONE);
+
+            loadEmptyMoviesDetailsFragment();
+            return true;
         }
 
         if (id == R.id.action_settings) {
@@ -413,6 +420,18 @@ public class MoviesFragment extends Fragment implements IMoviesView, SwipeRefres
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void loadEmptyMoviesDetailsFragment() {
+        if (mTwoPaneMode) {
+            //Set empty movie details fragment
+            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+            fragmentTransaction.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
+            fragmentTransaction.replace(R.id.frame_movie_details,
+                    MovieDetailsFragment.newInstance(null, true),
+                    MovieDetailsFragment.class.getSimpleName());
+            fragmentTransaction.commit();
+        }
     }
 
     @Override
