@@ -2,7 +2,6 @@ package com.crazyhitty.chdev.ks.popularmovies.ui.adapters;
 
 import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,7 +49,6 @@ public class MoviesRecyclerAdapter extends RecyclerView.Adapter<MoviesRecyclerAd
         //set text size
         holder.txtMovieTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, SettingPreferences.FONT_SIZE_VALUE);
         holder.txtMovieRank.setTextSize(TypedValue.COMPLEX_UNIT_SP, SettingPreferences.FONT_SIZE_VALUE);
-        Log.e("Text Size", String.valueOf(SettingPreferences.FONT_SIZE_VALUE));
 
         Picasso.with(holder.itemView.getContext())
                 .load(SettingPreferences.POSTER_THUMBNAIL_IMAGE_PATH + mMovieItems.get(position).getPosterPath())
