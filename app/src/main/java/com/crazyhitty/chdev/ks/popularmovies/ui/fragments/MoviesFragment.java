@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -145,20 +146,20 @@ public class MoviesFragment extends Fragment implements IMoviesView, SwipeRefres
         } else {
             NetworkConnectionUtil.showNetworkUnavailableDialog(getActivity());
             if (SettingPreferences.SORT_BY_POPULARITY) {
-                swipeRefreshLayout.post(new Runnable() {
+                new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        swipeRefreshLayout.setRefreshing(true);
+                        swipeRefreshLayout.setRefreshing(false);
                     }
-                });
+                }, 500);
                 mMoviesPresenter.attemptMoviesLoadingByPopularity(mPageNumberPopular, true);
             } else if (SettingPreferences.SORT_BY_RATING) {
-                swipeRefreshLayout.post(new Runnable() {
+                new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        swipeRefreshLayout.setRefreshing(true);
+                        swipeRefreshLayout.setRefreshing(false);
                     }
-                });
+                }, 500);
                 mMoviesPresenter.attemptMoviesLoadingByUserRating(mPageNumberRating, true);
             } else if (SettingPreferences.SORT_BY_FAVORITES) {
                 swipeRefreshLayout.setRefreshing(true);
@@ -197,7 +198,12 @@ public class MoviesFragment extends Fragment implements IMoviesView, SwipeRefres
         } else if (SettingPreferences.SORT_BY_FAVORITES) {
             mMoviesPresenter.attemptMoviesLoadingByFavorites();
         } else {
-            swipeRefreshLayout.setRefreshing(false);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    swipeRefreshLayout.setRefreshing(false);
+                }
+            }, 500);
             NetworkConnectionUtil.showNetworkUnavailableDialog(getActivity());
         }
     }
