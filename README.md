@@ -2,6 +2,8 @@
 
 A great way to find most popular and top voted movies of all time.
 
+![](http://i.imgur.com/aTCB772.png)
+
 # Installation
 
 Either add a API key manually inside Config.java located at:
